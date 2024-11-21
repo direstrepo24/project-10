@@ -1,0 +1,23 @@
+{
+  "name": "mf-root",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build:all": "npm run build:shared && npm run build:module1 && npm run build:module2",
+    "build:shared": "npm run build -w shared",
+    "build:module1": "npm run build -w module1",
+    "build:module2": "npm run build -w module2",
+    "preview:shared": "npm run preview -w shared",
+    "preview:module1": "npm run preview -w module1",
+    "preview:module2": "npm run preview -w module2",
+    "dev:host": "npm run dev -w host",
+    "start": "npm run build:all && concurrently \"npm run preview:shared\" \"npm run preview:module1\" \"npm run preview:module2\" \"npm run dev:host\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
